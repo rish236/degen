@@ -8,7 +8,7 @@ import random as r
 import time
 
 
-TOKEN = os.environ("degen_token")
+TOKEN = os.environ[]'degen_token']
 
 bot = commands.Bot(command_prefix='!')
 
