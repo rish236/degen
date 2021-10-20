@@ -94,7 +94,7 @@ async def appeal(ctx):
         await ctx.author.send('Fill out the form to appeal for a blessing: https://forms.gle/QgxaaR7p7iNRf1d38')
         await ctx.send(embed=discord.Embed(title="A message from 2AC:", description="Check your pockets. 🪙🪙", color = 0))
     except Exception as e:
-        await ctx.send(embed=discord.Embed(title="A message from degen:", description="Error 402: Unable to submit dm. Make sure you have direct messages from server members turned on. 🤖🤖", color = 0))
+        await ctx.send(embed=discord.Embed(title="A message from degen:", description="Error 401: Unable to submit dm. Make sure you have direct messages from server members turned on. 🤖🤖", color = 0))
         await ctx.send(file=discord.File('open_dm.png'))
 
 
