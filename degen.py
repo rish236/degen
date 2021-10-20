@@ -81,7 +81,9 @@ async def check(member):
 
 
 
-
+@bot.command(name="horror",pass_context=True)
+async def appeal(ctx):
+    await ctx.send(":horror: :horror: :horror: :horror: :horror:")
 
 
    
