@@ -83,7 +83,7 @@ async def check(member):
 
 @bot.command(name="horror",pass_context=True)
 async def horror(ctx):
-    await ctx.send(":horror: :horror: :horror: :horror: :horror:")
+    await ctx.send("<a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654>")
 
 
    
