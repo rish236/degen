@@ -81,9 +81,15 @@ async def check(member):
 
 
 
+
 @bot.command(name="horror",pass_context=True)
 async def horror(ctx):
     await ctx.send("<a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654>")
+
+
+@bot.command(name="vibe",pass_context=True)
+async def horror(ctx):
+    await ctx.send("<a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120>")
 
 
    
