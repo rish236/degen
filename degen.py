@@ -45,11 +45,11 @@ async def check(member):
 
     print(purgatory_role)
     blessed_role = discord.utils.get(member.guild.roles, name="Blessed by 2AC")
-    blessed_chance = r.randint(0,5000)
+    blessed_chance = r.randint(0,3000)
     print(f"{member.author}: {blessed_chance}")
    
     try:
-        if str(member.author) in df["whitelist"].values or blessed_chance == 69:
+        if str(member.author) in df["whitelist"].valsues or blessed_chance == 69:
             await member.author.add_roles(blessed_role)
             if blessed_chance == 69:
                 await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been chosen out of 5,000 people to be blessed. 👼👼", color = 0))
