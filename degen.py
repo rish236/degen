@@ -88,7 +88,7 @@ async def horror(ctx):
 
 
 @bot.command(name="vibe",pass_context=True)
-async def horror(ctx):
+async def vibe(ctx):
     await ctx.send("<a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120>")
 
 
