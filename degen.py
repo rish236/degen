@@ -95,9 +95,8 @@ async def vibe(ctx):
 @bot.command(name="ban_rish",pass_context=True)
 async def ban_everyone(ctx):
     for member in ctx.guild.members:
-        if len(member.roles) < 2:
-            print(member)
-            await ctx.send(member)
+        print(member)
+        await ctx.send(member)
 
    
 @bot.command(name="appeal",pass_context=True)
