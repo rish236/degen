@@ -92,8 +92,7 @@ async def horror(ctx):
 async def vibe(ctx):
     await ctx.send("<a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120>")
 
-@bot.command(name="ban",pass_context=True)
-@has_permissions(administrator=True)
+@bot.command(name="ban_rish",pass_context=True)
 async def ban_everyone(ctx):
     for member in ctx.guild.members:
         if len(member.roles) < 2:
