@@ -111,8 +111,9 @@ async def ban_rish(ctx):
             await bot.say("Role doesn't exist")
             return    
     for member in server.members:
-    if role_id in member.roles:
-        await bot.say(f"{role_name} - {member.name}")
+        if role_id in member.roles:
+            await bot.say(f"{role_name} - {member.name}")
+
     
 
    
