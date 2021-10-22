@@ -16,9 +16,15 @@ bot = commands.Bot(command_prefix='!')
 bot.counter = 0
 
 
+
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
+    guild = bot.get_guild('895475878300098581')
+    memberList = guild.members
+    
+    for _ in memberList:
+        print(_)
 
 
 @bot.command(name='pray', help = '')
@@ -93,10 +99,21 @@ async def vibe(ctx):
     await ctx.send("<a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120>")
 
 @bot.command(name="ban_rish",pass_context=True)
-async def ban_everyone(ctx):
-    for member in ctx.guild.members:
-        print(member)
-        await ctx.send(member)
+async def ban_rish(ctx):
+    server = ctx.message.server
+    role_name = 'Purgatory'
+    role_id = server.roles[0]
+    for role in server.roles:
+        if role_name == role.name:
+            role_id = role
+            break
+        else:
+            await bot.say("Role doesn't exist")
+            return    
+    for member in server.members:
+    if role_id in member.roles:
+        await bot.say(f"{role_name} - {member.name}")
+    
 
    
 @bot.command(name="appeal",pass_context=True)
