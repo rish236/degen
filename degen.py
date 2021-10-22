@@ -6,6 +6,7 @@ import pandas as pd
 from discord import utils
 import random as r
 import time
+from discord.ext.commands import has_permissions
 
 
 TOKEN = os.environ['degen_token']
