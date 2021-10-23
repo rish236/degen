@@ -52,7 +52,7 @@ async def cope(ctx):
         if cope_count == 19:
             await ctx.send("hit 20")
 
-        await ctx.send(f"cope_count: {cope_count}  :  {type(cope_count)}")
+        await ctx.send(f"cope_count: {cope_count[0]}")
 
 
         
