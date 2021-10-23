@@ -81,7 +81,7 @@ async def pray(member):
     discord_tag = member.author.discriminator
     discord_id = member.author.id
     discord_username = author + "#" + discord_tag
-    f = open('names.txt','a')
+    #f = open('names.txt','a')
 
     df = pd.read_csv("removed_dups.csv")
 
@@ -92,7 +92,7 @@ async def pray(member):
     purgatory_role = discord.utils.get(roles, id=899420586021896253)
     blessed_role = discord.utils.get(roles, id=899427407935713331)
 
-    blessed_chance = r.randint(0,2000)
+    blessed_chance = r.randint(0,1000)
     print(f"{member.author}: {blessed_chance}")
    
     try:
@@ -100,28 +100,28 @@ async def pray(member):
             await member.author.add_roles(blessed_role)
             if blessed_chance == 69:
                 await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been blessed. 👼👼👼", color = 0))
-                f.write(discord_username + " whitelist 69 \n")
+                #f.write(discord_username + " whitelist 69 \n")
             
             else:
                 await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been blessed. 👼👼", color = 0))
-                f.write(discord_username + " whitelist\n")
+                #f.write(discord_username + " whitelist\n")
                 return
         else:
             await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, something is brewing inside you. 💀💀", color = 0))
             try:
                 await member.author.add_roles(purgatory_role)
             except Exception as e:
-                f.write(discord_username + "unable to add to blacklist " + e +   "\n")
+                #f.write(discord_username + "unable to add to blacklist " + e +   "\n")
                 return
 
-            f.write(discord_username + " blacklist \n")
+            #f.write(discord_username + " blacklist \n")
             return
 
     except Exception as e:
         
         await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, something is brewing inside you. 💀💀", color = 0))
         await member.author.add_roles(purgatory_role)
-        f.write(discord_username + " blacklist, exception\n")
+        #f.write(discord_username + " blacklist, exception\n")
         return
 
 
