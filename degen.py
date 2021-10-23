@@ -30,6 +30,7 @@ async def cope(ctx):
 
     roles = ctx.guild.roles
     blessed_role = discord.utils.get(roles, id=899427407935713331)
+    purgatory_role = discord.utils.get(roles, id=899420586021896253)
 
 
     conn = connect_db()
@@ -43,15 +44,27 @@ async def cope(ctx):
             query2 = "UPDATE users SET cope_count = {} where disc = '{}'".format(int(cope_count) + 1, ctx.author)
             cursor.execute(query2)
         except Exception as e:
-            query = "INSERT into users (disc, cope_count) values (%s, %s)"
-            tup = (ctx.author, 1)
-            cursor.execute(query, tup)
-            cope_count = 1
+            try:
+
+                query = "INSERT into users (disc, cope_count) values (%s, %s)"
+                tup = (ctx.author, 1)
+                cursor.execute(query, tup)
+                cope_count = 1
+            except:
+                pass
+                cursor.close()
+
+
         
         if cope_count == 19:
             await ctx.author.add_roles(blessed_role)
 
             await ctx.send(embed=discord.Embed(title="A message from 2AC:", description=f"{ctx.author.mention}, congrats, you coped your way to a blessing. 🐸🐸", color = 0))
+            try:
+                await ctx.author.remove_roles(purgatory_role)
+            except:
+                pass
+
             cursor.close()
             return
 
