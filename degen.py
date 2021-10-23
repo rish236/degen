@@ -34,7 +34,9 @@ async def cope(ctx):
         cursor = conn.cursor()
         query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
         cursor.execute(query)
-        cope_count = int(cursor.fetchall())
+        cope_count = cursor.fetchall()
+        
+
         # try:
         #     query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
         #     cursor.execute(query)
@@ -50,7 +52,7 @@ async def cope(ctx):
         if cope_count == 19:
             await ctx.send("hit 20")
 
-        await ctx.send(f"cope_count: {cope_count}")
+        await ctx.send(f"cope_count: {cope_count}  :  {type(cope_count)}")
 
 
         
