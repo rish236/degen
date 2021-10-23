@@ -25,17 +25,23 @@ def connect_db():
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-@bot.command(name='insert')
-@has_permissions(administrator=True)
+@bot.command(name='cope')
 
-async def insert(ctx):
-    df = pd.read_csv("removed_dups.csv")
+async def cope(ctx):
 
     conn = connect_db()
     with conn:
         cursor = conn.cursor()
-        cursor.executemany('''INSERT INTO users (disc) VALUES ( %s)''',
-        [df["blacklist"]])
+
+        query = f'''SELECT cope_count from users where disc = {ctx.author} '''
+        cursor.execute(query)
+        cope_count = cursor.fetchall()
+        print(cope_count)
+
+        
+        
+        
+
 
 
 
