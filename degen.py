@@ -33,14 +33,15 @@ async def cope(ctx):
     with conn:
         cursor = conn.cursor()
         try:
-            query = f'''SELECT cope_count from users where disc = {ctx.author} '''
+            query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
             cursor.execute(query)
-            cope_count = cursor.fetchall()
-            query2 = f'''UPDATE users SET cope_count = {cope_count + 1} where disc = {ctx.author}  '''
+            cope_count = int(cursor.fetchall())
+            query2 = "UPDATE users SET cope_count = {} where disc = '{}'".format(cope_count + 1, ctx.author)
             cursor.execute(query2)
         except Exception as e:
-            query = f'''INSERT into users (disc, cope_count) values ({ctx.author}, 1)'''
-            cursor.execute(query)
+            query = "INSERT into users (disc, cope_count) values (%s, %s)"
+            tup = (ctx.author, 1)
+            cursor.execute(query, tup)
             cope_count = 1
         
         if cope_count == 19:
