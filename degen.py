@@ -27,6 +27,7 @@ async def on_ready():
 
 @bot.command(name='cope')
 async def cope(ctx):
+    print(ctx.author)
 
     conn = connect_db()
     with conn:
