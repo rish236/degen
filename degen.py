@@ -29,7 +29,7 @@ async def on_ready():
 async def cope(ctx):
 
     roles = ctx.guild.roles
-    blessed_role = discord.utils.get(roles, id=899451851500568586)
+    blessed_role = discord.utils.get(roles, id=899427407935713331)
 
 
     conn = connect_db()
