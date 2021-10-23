@@ -68,8 +68,9 @@ async def cope(ctx):
             cursor.close()
             return
 
-        await ctx.send(file=discord.File('copium_pepe.jpeg'))
         cursor.close()
+    await ctx.send(file=discord.File('copium_pepe.jpeg'))
+
 
 
 
