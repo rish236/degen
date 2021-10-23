@@ -30,9 +30,7 @@ async def cope(ctx):
     print(ctx.author)
 
     conn = connect_db()
-    with conn:
-        cursor = conn.cursor()
-        cope_count = cursor.fetchone()[0]
+    with conn.cursor() as cursor:
         
 
         try:
