@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='!')
 bot.counter = 0
 
 def connect_db():
-    conn = pymysql.connect(os.environ['host'], user=os.environ['user'], password=os.environ['password'], db=os.environ['dbname'])
+    conn = pymysql.connect(os.environ['host'], user=os.environ['degen_db_user'], password=os.environ['degen_db_password'], db=os.environ['degen_db_name'])
     conn.autocommit(True)
     return conn
 
@@ -29,6 +29,21 @@ async def on_ready():
     
     for _ in memberList:
         print(_)
+
+@bot.command(name='insert')
+async def insert():
+    df = pd.read_csv("removed_dups.csv")
+
+    conn = connect_db()
+    with conn:
+        cursor = conn.cursor()
+
+        for _ in df['blacklist'].values:
+            query = f"INSERT INTO users (disc) VALUES ({_})"
+            cursor.execute(query)
+
+
+        
 
 
 @bot.command(name='pray', help = '')
