@@ -52,9 +52,11 @@ async def cope(ctx):
             await ctx.author.add_roles(blessed_role)
 
             await ctx.send(embed=discord.Embed(title="A message from 2AC:", description=f"{ctx.author.mention}, congrats, you coped your way to a blessing. 🐸🐸", color = 0))
+            cursor.close()
             return
 
         await ctx.send(file=discord.File('copium_pepe.jpeg'))
+        cursor.close()
 
 
 
