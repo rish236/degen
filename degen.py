@@ -32,27 +32,25 @@ async def cope(ctx):
     conn = connect_db()
     with conn:
         cursor = conn.cursor()
-        query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
-        cursor.execute(query)
-        cope_count = cursor.fetchall()
+        cope_count = cursor.fetchone()[0]
         
 
-        # try:
-        #     query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
-        #     cursor.execute(query)
-        #     cope_count = int(cursor.fetchall())
-        #     query2 = "UPDATE users SET cope_count = {} where disc = '{}'".format(cope_count + 1, ctx.author)
-        #     cursor.execute(query2)
-        # except Exception as e:
-        #     query = "INSERT into users (disc, cope_count) values (%s, %s)"
-        #     tup = (ctx.author, 1)
-        #     cursor.execute(query, tup)
-        #     cope_count = 1
+        try:
+            query = "SELECT cope_count from users where disc = '{}'".format(ctx.author)
+            cursor.execute(query)
+            cope_count = cursor.fetchone()[0]
+            query2 = "UPDATE users SET cope_count = {} where disc = '{}'".format(int(cope_count) + 1, ctx.author)
+            cursor.execute(query2)
+        except Exception as e:
+            query = "INSERT into users (disc, cope_count) values (%s, %s)"
+            tup = (ctx.author, 1)
+            cursor.execute(query, tup)
+            cope_count = 1
         
         if cope_count == 19:
             await ctx.send("hit 20")
 
-        await ctx.send(f"cope_count: {cope_count[0]}")
+        await ctx.send(f"cope_count: {int(cope_count)}")
 
 
         
