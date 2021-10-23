@@ -55,7 +55,7 @@ async def cope(ctx):
 
 
         
-        if cope_count == 19:
+        if cope_count == 29:
             await ctx.author.add_roles(blessed_role)
 
             await ctx.send(embed=discord.Embed(title="A message from 2AC:", description=f"{ctx.author.mention}, congrats, you coped your way to a blessing. 🐸🐸", color = 0))
