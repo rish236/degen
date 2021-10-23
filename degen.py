@@ -51,8 +51,6 @@ async def cope(ctx):
                 cursor.execute(query, tup)
                 cope_count = 1
             except:
-                cursor.close()
-
                 pass
 
 
