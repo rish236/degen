@@ -23,7 +23,7 @@ def connect_db():
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user} has connected to Discord!')
+    print(f'{bot.user} has connected to Discord!!')
 
 @bot.command(name='cope')
 async def cope(ctx):
