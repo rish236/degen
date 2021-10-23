@@ -27,7 +27,10 @@ async def on_ready():
 
 @bot.command(name='cope')
 async def cope(ctx):
-    print(ctx.author)
+
+    roles = ctx.guild.roles
+    blessed_role = discord.utils.get(roles, id=899451851500568586)
+
 
     conn = connect_db()
     with conn.cursor() as cursor:
@@ -46,6 +49,8 @@ async def cope(ctx):
             cope_count = 1
         
         if cope_count == 19:
+            await ctx.author.add_roles(blessed_role)
+
             await ctx.send("hit 20")
 
         await ctx.send(f"cope_count: {int(cope_count)+1}")
