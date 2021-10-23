@@ -17,30 +17,33 @@ bot = commands.Bot(command_prefix='!')
 bot.counter = 0
 
 def connect_db():
-    conn = pymysql.connect(os.environ['host'], user=os.environ['degen_db_user'], password=os.environ['degen_db_password'], db=os.environ['degen_db_name'])
+    conn = pymysql.connect(user=os.environ['degen_db_user'], password=os.environ['degen_db_password'],host=os.environ['degen_db_host'], database=os.environ['degen_db_name'])
     conn.autocommit(True)
     return conn
 
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
-    guild = bot.get_guild('895475878300098581')
-    memberList = guild.members
-    
-    for _ in memberList:
-        print(_)
 
 @bot.command(name='insert')
-async def insert():
+@has_permissions(administrator=True)
+
+async def insert(ctx):
     df = pd.read_csv("removed_dups.csv")
 
     conn = connect_db()
     with conn:
         cursor = conn.cursor()
+        cursor.executemany('''INSERT INTO users (disc) VALUES ( %s)''',
+        [df["blacklist"]])
 
-        for _ in df['blacklist'].values:
-            query = f"INSERT INTO users (disc) VALUES ({_})"
-            cursor.execute(query)
+
+
+
+            
+            # query = f"INSERT INTO users (disc) VALUES ({_})"
+            # cursor.execute(query)
+    
 
 
         
