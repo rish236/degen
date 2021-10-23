@@ -7,6 +7,7 @@ from discord import utils
 import random as r
 import time
 from discord.ext.commands import has_permissions
+import pymysql
 
 
 TOKEN = os.environ['degen_token']
@@ -15,7 +16,10 @@ bot = commands.Bot(command_prefix='!')
 
 bot.counter = 0
 
-
+def connect_db():
+    conn = pymysql.connect(os.environ['host'], user=os.environ['user'], password=os.environ['password'], db=os.environ['dbname'])
+    conn.autocommit(True)
+    return conn
 
 @bot.event
 async def on_ready():
@@ -28,7 +32,7 @@ async def on_ready():
 
 
 @bot.command(name='pray', help = '')
-async def check(member):
+async def pray(member):
     author = member.author.name
     discord_tag = member.author.discriminator
     discord_id = member.author.id
@@ -37,29 +41,21 @@ async def check(member):
 
     df = pd.read_csv("removed_dups.csv")
 
-    try:
-        roles = member.guild.roles
-    except Exception as e:
-        print(e)
-        time.sleep(.3)
 
+    roles = member.guild.roles
+   
 
-    try:
-        purgatory_role = discord.utils.get(roles, name="Purgatory")
-    except Exception as e:
-        purgatory_role = discord.utils.get(member.guild.roles, name="Purgatory")
+    purgatory_role = discord.utils.get(roles, id=899420586021896253)
+    blessed_role = discord.utils.get(roles, id=899427407935713331)
 
-
-    print(purgatory_role)
-    blessed_role = discord.utils.get(member.guild.roles, name="Blessed by 2AC")
-    blessed_chance = r.randint(0,3000)
+    blessed_chance = r.randint(0,2000)
     print(f"{member.author}: {blessed_chance}")
    
     try:
-        if str(member.author) in df["whitelist"].valsues or blessed_chance == 69:
+        if str(member.author) in df["whitelist"].values or blessed_chance == 69:
             await member.author.add_roles(blessed_role)
             if blessed_chance == 69:
-                await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been chosen out of 5,000 people to be blessed. 👼👼", color = 0))
+                await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been blessed. 👼👼👼", color = 0))
                 f.write(discord_username + " whitelist 69 \n")
             
             else:
@@ -67,7 +63,6 @@ async def check(member):
                 f.write(discord_username + " whitelist\n")
                 return
         else:
-            print("got here blacklist")
             await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, something is brewing inside you. 💀💀", color = 0))
             try:
                 await member.author.add_roles(purgatory_role)
@@ -86,9 +81,6 @@ async def check(member):
         return
 
 
-
-
-
 @bot.command(name="horror",pass_context=True)
 async def horror(ctx):
     await ctx.send("<a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654> <a:horror:900309150494490654>")
@@ -97,22 +89,6 @@ async def horror(ctx):
 @bot.command(name="vibe",pass_context=True)
 async def vibe(ctx):
     await ctx.send("<a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120> <a:toadz:897914471895429120>")
-
-@bot.command(name="ban_rish",pass_context=True)
-async def ban_rish(ctx):
-    server = ctx.message.server
-    role_name = 'Purgatory'
-    role_id = server.roles[0]
-    for role in server.roles:
-        if role_name == role.name:
-            role_id = role
-            break
-        else:
-            await bot.say("Role doesn't exist")
-            return    
-    for member in server.members:
-        if role_id in member.roles:
-            await bot.say(f"{role_name} - {member.name}")
 
     
 
