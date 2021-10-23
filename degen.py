@@ -66,10 +66,6 @@ async def cope(ctx):
 
 
 
-            
-            # query = f"INSERT INTO users (disc) VALUES ({_})"
-            # cursor.execute(query)
-    
 
 
         
@@ -150,12 +146,12 @@ async def appeal(ctx):
         await ctx.send(file=discord.File('open_dm.png'))
 
 
-@bot.command(name="register",pass_context=True)
-async def register(ctx):
-    f = open('registered.txt','a')
-    f.write(f"{ctx.author} : {bot.counter}\n")
-    bot.counter += 1
-    await ctx.send(embed=discord.Embed(title="A message from degen:", description="You have successfully registered. 🤖🤖", color = 0))
+# @bot.command(name="register",pass_context=True)
+# async def register(ctx):
+#     f = open('registered.txt','a')
+#     f.write(f"{ctx.author} : {bot.counter}\n")
+#     bot.counter += 1
+#     await ctx.send(embed=discord.Embed(title="A message from degen:", description="You have successfully registered. 🤖🤖", color = 0))
 
 
 
