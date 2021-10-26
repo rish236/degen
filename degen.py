@@ -55,7 +55,7 @@ async def cope(ctx):
 
 
         
-        if cope_count == 29:
+        if cope_count == 19:
             await ctx.author.add_roles(blessed_role)
 
             await ctx.send(embed=discord.Embed(title="A message from 2AC:", description=f"{ctx.author.mention}, congrats, you coped your way to a blessing. 🐸🐸", color = 0))
@@ -103,7 +103,7 @@ async def pray(member):
     purgatory_role = discord.utils.get(roles, id=899420586021896253)
     blessed_role = discord.utils.get(roles, id=899427407935713331)
 
-    blessed_chance = r.randint(0,1000)
+    blessed_chance = r.randint(0,500)
     print(f"{member.author}: {blessed_chance}")
    
     try:
