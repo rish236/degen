@@ -103,7 +103,7 @@ async def pray(member):
     purgatory_role = discord.utils.get(roles, id=899420586021896253)
     blessed_role = discord.utils.get(roles, id=899427407935713331)
 
-    blessed_chance = r.randint(0,500)
+    blessed_chance = r.randint(0,250)
     print(f"{member.author}: {blessed_chance}")
    
     try:
