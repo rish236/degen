@@ -109,7 +109,10 @@ async def pray(member):
     try:
         if str(member.author) in df["whitelist"].values or blessed_chance == 69:
             await member.author.add_roles(blessed_role)
-            await member.author.remove_roles(purgatory_role)
+            try:
+                await member.author.remove_roles(purgatory_role)
+            except:
+                pass
             if blessed_chance == 69:
                 await member.send(embed=discord.Embed(title="A message from 2AC:", description=f"{member.author.mention}, you have been blessed. 👼👼👼", color = 0))
                 #f.write(discord_username + " whitelist 69 \n")
